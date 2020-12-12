@@ -13,9 +13,16 @@ class DetailsExtractSpider(scrapy.Spider):
 
     def parse(self, response):     
          general = response.css("div.browsename")
-         for gen in general:      
+         for gen in general:
+            using = gen.xpath('.//span//text()').extract()
+            name = using[0]
+            gender = using[1]
+            rest = using[2:]
+            rest = ''.join(rest)
+            all_text = ''.join(gen.xpath('.//text()').extract())            
             yield {
-            "Name": gen.css("span.listname ::text").extract_first(),
-            "Gender": gen.css("span.listgender ::text").extract_first(),
-            "Location": ''.join(gen.css("span.listusage  ::text").extract())
+            "Name": name,
+            "Gender": gender,
+            "Location": ''.join(gen.css("span.listusage  ::text").extract()),
+            "Description": all_text[all_text.index(using[-1])+len(using[-1]):]
             }
