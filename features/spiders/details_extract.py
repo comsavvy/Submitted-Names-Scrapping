@@ -17,8 +17,6 @@ class DetailsExtractSpider(scrapy.Spider):
             using = gen.xpath('.//span//text()').extract()
             name = using[0]
             gender = using[1]
-            rest = using[2:]
-            rest = ''.join(rest)
             all_text = ''.join(gen.xpath('.//text()').extract())            
             yield {
             "Name": name,
