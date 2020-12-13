@@ -4,11 +4,8 @@ import scrapy
 class DetailsExtractSpider(scrapy.Spider):
     name = 'details_extract'
     allowed_domains = ['behindthename.com']
-    start_urls = ['http://www.behindthename.com/submit/names/usage/eastern-african/',
-                    "http://www.behindthename.com//submit/names/usage/eastern-african/2",
-                    "http://www.behindthename.com//submit/names/usage/eastern-african/3",
-                    "http://www.behindthename.com//submit/names/usage/eastern-african/4"
-                    ]
+    pg = 'http://www.behindthename.com/submit/names/usage/eastern-african/'
+    start_urls = [pg, f'{pg}2', f'{pg}3', f'{pg}4']
 
 
     def parse(self, response):     
