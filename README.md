@@ -1,6 +1,5 @@
 # Submitted Names Scrapping
-***Objective***<br />
-Scrape the following features:
+***Objectives***<br />
 * The Submitted names
 * Gender
 * Location
