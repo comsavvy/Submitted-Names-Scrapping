@@ -1,26 +1,19 @@
 import scrapy
-import requests
 
-
-def all_urls(scrape_this):
-    base = 'http://www.behindthename.com'
-    all_page = []
-    
-    all_page.append(scrape_this)
-    req = requests.get(scrape_this)
-    r_scrape = scrapy.Selector(req)
-    forwardpg = r_scrape.css('nav.pagination')
-    for i in list(set(forwardpg.css('a::attr(href)').extract())):
-        all_page.append(base+i)
-    return all_page
 
 class DetailsExtractSpider(scrapy.Spider):
     name = 'details_extract'
     allowed_domains = ['behindthename.com']
-    start_urls = all_urls('http://www.behindthename.com/submit/names/usage/eastern-african/')
+    start_urls = ['http://www.behindthename.com/submit/names/usage/eastern-african/']
 
-
-    def parse(self, response):     
+    def parse(self, response):
+        links = len(set(response.css('nav.pagination > a::attr(href)').extract()))
+        i = 0
+        while i <= links:
+            yield response.follow(url=f'{response.url}/{i+1}', callback=self.page_details)
+            i += 1
+            
+    def page_details(self, response):
          general = response.css("div.browsename")
          for gen in general:
             using = gen.xpath('.//span//text()').extract()
