@@ -14,7 +14,7 @@ class DetailsExtractSpider(scrapy.Spider):
         """
         all_country = response.css('div.nb-quickfilter > select[name=usage] > option ::attr(value)').extract()[1:-1]
         for country in all_country:
-            yield response.follow(url=response.urljoin(country), callback=self.each_page)
+            yield scrapy.Request(url=response.urljoin(country), callback=self.each_page)
     
     def each_page(self, response):
         """
@@ -30,8 +30,8 @@ class DetailsExtractSpider(scrapy.Spider):
         """
             Getting all the information needed from all the pages here.
         """
-         general = response.css("div.browsename")
-         for gen in general:
+        general = response.css("div.browsename")
+        for gen in general:
             using = gen.xpath('.//span//text()').extract()
             name = using[0]
             gender = using[1]
