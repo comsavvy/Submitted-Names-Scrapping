@@ -12,7 +12,7 @@ class DetailsExtractSpider(scrapy.Spider):
             And redirecting each country to 'each_page' method to confirm the pages,
             And then scrap them in 'page_details' method.
         """
-        all_country = response.css('div.nb-quickfilter > select[name=usage] > option ::attr(value)').extract()[1:-1]
+        all_country = response.css('div.nb2-quickfilter > select[name=usage] > option ::attr(value)').extract()[2:]
         for country in all_country:
             yield scrapy.Request(url=response.urljoin(country), callback=self.each_page)
     
