@@ -1,0 +1,14 @@
+README.md
+setup.py
+features/__init__.py
+features/items.py
+features/middlewares.py
+features/pipelines.py
+features/settings.py
+features/spiders/__init__.py
+features/spiders/details_extract.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
