@@ -2,6 +2,7 @@
 ***Objectives***<br />
 * The Submitted names
 * Gender
+* Countries
 * Location
 * Country descriptions from <a href="https://www.behindthename.com">behindthename.com</a>
 
